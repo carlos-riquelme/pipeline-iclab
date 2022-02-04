@@ -21,7 +21,7 @@ def call(){
                 stage("Pipeline"){
                     when {
                         anyOf {
-                            branch 'feature-library', branch 'develop', branch 'release'
+                            branch 'feature-library', branch 'develop', branch 'feature-estadomundial', branch 'feature-estadopais'
                             }
                     }
                     steps {
@@ -32,13 +32,13 @@ def call(){
                         }
                     }
                     when {
-                        branch 'release'
+                        { BRANCH_NAME ==~ /(release**)/ }
                     }
                     steps {
                         script {
-                            sh "env"
-                            env.TAREA = ""
-                            gradle.call(params.stages)
+                            echo "hola"
+                            // env.TAREA = ""
+                            // gradle.call(params.stages)
                         }
                     }
                     post{
