@@ -19,6 +19,9 @@ def call(){
             }
             stages {
                 stage("Pipeline"){
+                    when {
+                        branch 'feature-library'
+                    }
                     steps {
                         script{
                             sh "env"
