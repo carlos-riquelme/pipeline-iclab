@@ -25,9 +25,13 @@ def call(){
                     }
                     steps {
                         script{
-                            // sh "env"
-                            // env.TAREA = ""
-                            gradle.call(params.stages)
+                            sh "env"
+                            env.TAREA = ""
+                            if(params.compileTool == 'maven'){
+                                maven.call(params.stages);
+                            }else{
+                                gradle.call(params.stages)
+                      }
                         }
                     }
                     when {
