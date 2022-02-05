@@ -13,8 +13,7 @@ def call(){
                 NEXUS_PASSWORD = credentials('NEXUS-PASS')
             }
             parameters {
-                choice choices: ['maven', 'gradle'], description: 'Seleccione una herramienta para preceder a compilar', name: 'compileTool'
-                text description: 'Enviar los stages separados por ";"... Vacío si necesita todos los stages', name: 'stages'
+
                 gitParameter branchFilter: 'origin/(.*)', defaultValue: 'develop', name: 'BRANCH', type: 'PT_BRANCH'
             }
             stages {
@@ -26,8 +25,8 @@ def call(){
                     }
                     steps {
                         script{
-                            sh "env"
-                            env.TAREA = ""
+                            // sh "env"
+                            // env.TAREA = ""
                             gradle.call(params.stages)
                         }
                     }
